@@ -9,13 +9,16 @@
                         <a href="{{ route('admin/employees') }}" class="btn btn-secondary">Voltar</a>
                     </p>
 
-                    @if(Session::has('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ Session::get('success') }}
+                    @if(Session::has('update'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ Session::get('update') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     @endif
 
-                    <form action="{{ route('admin/employees/update', $products->id) }}" method="POST">
+                    <form action="{{ route('admin/employees/update', $employees->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -23,7 +26,7 @@
                             <div class="col">
                                 <label class="form-label">Nome:</label>
                                 <input type="text" name="name" class="form-control" placeholder="Nome:" value="{{$employees->name}}">
-                                @error('title')
+                                @error('name')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
@@ -32,7 +35,7 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <label class="form-label">Nascimento:</label>
-                                <input type="number" name="year" class="form-control" placeholder="Ano/Lote:" value="{{$employees->year}}">
+                                <input type="date" name="year" class="form-control" placeholder="Data de nascimento:" value="{{$employees->year}}">
                                 @error('year')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror

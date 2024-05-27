@@ -6,12 +6,26 @@
                     <h1 class="mb-0">Funcionários:
                         <div class="text-end">
                             <a href="{{ route('admin/employees/create') }}" class="btn btn-info">Novo</a>
+
+                            <a href="{{ route('admin/dashboard') }}" class="btn btn-secondary">Voltar</a>
                         </div>
                     </h1>
 
-                    @if(Session::has('success'))
+                    @if(Session::has('create'))
                     <div class="alert alert-success" role="alert">
-                        {{ Session::get('success') }}
+                        {{ Session::get('create') }}
+                    </div>
+                    @endif
+
+                    @if(Session::has('update'))
+                    <div class="alert alert-warning" role="alert">
+                        {{ Session::get('update') }}
+                    </div>
+                    @endif
+
+                    @if(Session::has('delete'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ Session::get('delete') }}
                     </div>
                     @endif
 
@@ -30,12 +44,12 @@
                             </thead>
 
                             <tbody>
-                                @forelse ($products as $product)
+                                @forelse ($employees as $employee)
                                 <tr>
                                     <td class="align-middle">{{ $loop->iteration }}</td>
-                                    <td class="align-middle">{{ $product->name }}</td>
-                                    <td class="align-middle">{{ $product->year }}</td>
-                                    <td class="align-middle">{{ $product->function }}</td>
+                                    <td class="align-middle">{{ $employee->name }}</td>
+                                    <td class="align-middle">{{ $employee->year }}</td>
+                                    <td class="align-middle">{{ $employee->function }}</td>
                                     <td class="align-middle">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <a href="{{ route('admin/employees/edit', ['id'=>$employee->id]) }}" type="button" class="btn btn-warning">Editar</a>

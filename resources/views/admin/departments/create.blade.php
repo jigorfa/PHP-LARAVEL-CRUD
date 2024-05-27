@@ -3,10 +3,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-dark overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-white">
-                    <h1 class="mb-0">Novo funcionário:</h1>
+                    <h1 class="mb-0">Novo departamento:</h1>
 
                     <p>
-                        <a href="{{ route('admin/employees') }}" class="btn btn-secondary">Voltar</a>
+                        <a href="{{ route('admin/departments') }}" class="btn btn-secondary">Voltar</a>
                     </p>
 
                     @if(Session::has('create'))
@@ -18,7 +18,7 @@
                     </div>
                     @endif
 
-                    <form action="{{route('admin/employees/save')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('admin/departments/save')}}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
@@ -33,19 +33,9 @@
 
                         <div class="row mb-3">
                             <div class="col">
-                                <label class="form-label">Nascimento:</label>
-                                <input type="date" name="year" class="form-control" placeholder="Data de nascimento:">
-                                @error('year')
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label class="form-label">Função:</label>
-                                <input type="text" name="function" class="form-control" placeholder="Função:">
-                                @error('function')
+                                <label class="form-label">Setor:</label>
+                                <input type="text" name="sectors" class="form-control" placeholder="Setor do departamento:">
+                                @error('sectors')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>

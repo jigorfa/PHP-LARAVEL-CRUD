@@ -9,12 +9,6 @@
                         <a href="{{ route('admin/products') }}" class="btn btn-secondary">Voltar</a>
                     </p>
 
-                    @if(Session::has('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ Session::get('success') }}
-                    </div>
-                    @endif
-
                     <form action="{{ route('admin/products/update', $products->id) }}" method="POST">
                         @csrf
                         @method('PUT')

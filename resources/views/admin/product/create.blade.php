@@ -5,11 +5,13 @@
                 <div class="p-6 text-white">
                     <h1 class="mb-0">Novo produto:</h1>
 
-                    <p><a href="{{ route('admin/products') }}" class="btn btn-secondary">Voltar</a></p>
+                    <p>
+                        <a href="{{ route('admin/products') }}" class="btn btn-secondary">Voltar</a>
+                    </p>
 
-                    @if(Session::has('success'))
+                    @if(Session::has('create'))
                     <div class="alert alert-success" role="alert">
-                        {{ Session::get('success') }}
+                        {{ Session::get('create') }}
                     </div>
                     @endif
 

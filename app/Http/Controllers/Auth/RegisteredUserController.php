@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
-class RegisteredUserController extends Controller
-{
+class RegisteredUserController extends Controller{
     /**
      * Display the registration view.
      */
@@ -27,24 +26,33 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+    public function store(Request $request): RedirectResponse{
+    $request->validate([
+        'name' => ['required', 'string', 'max:191'],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:191', 'unique:' . User::class],
+        'usertype' => ['required', 'string', 'max:191'],
+        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+    ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'usertype' => $request->usertype,
+        'password' => Hash::make($request->password),
+    ]);
 
-        event(new Registered($user));
+    event(new Registered($user));
 
-        Auth::login($user);
+    Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+    // Verifica o tipo de usuário e redireciona para a rota apropriada
+    if ($user->usertype === 'admin') {
+        return redirect(route('admin/dashboard'));
     }
+    else{
+        return redirect(route('dashboard'));
+    }
+
+
+}
 }

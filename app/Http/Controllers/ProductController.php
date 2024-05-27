@@ -26,10 +26,10 @@ class ProductController extends Controller{
         ]);
         $data = Product::create($validation);
         if ($data) {
-            session()->flash('success', 'Produto adicionado com êxito');
+            session()->flash('create', 'Produto cadastrado com êxito!');
             return redirect(route('admin/products'));
         } else {
-            session()->flash('error', 'Algum problema ocorreu');
+            session()->flash('error', 'Produto não pôde ser adicionado');
             return redirect(route('admin.products/create'));
         }
     }
@@ -41,6 +41,7 @@ class ProductController extends Controller{
 
     public function update(Request $request, $id){
         $products = Product::findOrFail($id);
+
         $title = $request->title;
         $year = $request->year;
         $category = $request->category;
@@ -50,12 +51,20 @@ class ProductController extends Controller{
         $products->year = $year;
         $products->category = $category;
         $products->price = $price;
+
+        $validate = $request->validate([
+            'title' => 'required',
+            'year' => 'required',
+            'category' => 'required',
+            'price' => 'required',
+        ]);
+
         $data = $products->save();
-            if ($data) {
-                session()->flash('success', 'Product Update Successfully');
+            if ($data && $validate) {
+                session()->flash('update', 'Produto atualizado com êxito!');
                 return redirect(route('admin/products'));
             } else {
-                session()->flash('error', 'Some problem occure');
+                session()->flash('error', 'Produto não pôde ser atualizado');
                 return redirect(route('admin/products/update'));
             }
     }
@@ -63,7 +72,7 @@ class ProductController extends Controller{
     {
         $products = Product::findOrFail($id)->delete();
         if ($products) {
-            session()->flash('success', 'Produto deletado com sucesso');
+            session()->flash('delete', 'Produto deletado com êxito!');
             return redirect(route('admin/products'));
         } else {
             session()->flash('error', 'Produto não pôde ser deletado');
