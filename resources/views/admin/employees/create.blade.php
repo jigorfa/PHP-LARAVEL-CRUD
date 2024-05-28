@@ -23,7 +23,7 @@
 
                         <div class="row mb-3">
                             <div class="col">
-                                <label class="form-label">Nome:</label>
+                                <label class="form-label">Nome: (*)</label>
                                 <input type="text" name="name" class="form-control" placeholder="Nome:">
                                 @error('name')
                                 <span class="text-danger">{{$message}}</span>
@@ -33,7 +33,7 @@
 
                         <div class="row mb-3">
                             <div class="col">
-                                <label class="form-label">Nascimento:</label>
+                                <label class="form-label">Nascimento: (*)</label>
                                 <input type="date" name="year" class="form-control" placeholder="Data de nascimento:">
                                 @error('year')
                                 <span class="text-danger">{{$message}}</span>
@@ -43,7 +43,7 @@
 
                         <div class="row mb-3">
                             <div class="col">
-                                <label class="form-label">Função:</label>
+                                <label class="form-label">Função: (*)</label>
                                 <input type="text" name="function" class="form-control" placeholder="Função:">
                                 @error('function')
                                 <span class="text-danger">{{$message}}</span>

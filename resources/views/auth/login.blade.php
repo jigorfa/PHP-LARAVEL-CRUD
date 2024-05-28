@@ -7,14 +7,14 @@
 
         <!-- Email -->
         <div>
-            <x-input-label for="email" :value="__('Email*')" />
+            <x-input-label for="email" :value="__('Email (*)')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"  autofocus autocomplete="username"/>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Senha -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Senha*')" />
+            <x-input-label for="password" :value="__('Senha (*)')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                 type="password"
