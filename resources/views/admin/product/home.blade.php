@@ -31,7 +31,7 @@
 
                     <hr>
 
-                    <div class="p-4">
+                    <div class="p-4 table-responsive">
                         <table class="table table-hover rounded">
                             <thead class="table-light table-striped table-hover table-bordered border-dark">
                                 <tr>
